@@ -29,6 +29,14 @@
             <!-- Message d'erreur ici si l'utilisateur oublie d'indiquer un rôle système. -->
             <h:message for="rolesysteme" errorStyle="color: red" />
 
+            <!-- Style de reformulation appliqué par le serveur (pirate, verlan, SMS, vieux français).
+            Il peut être changé à tout moment de la conversation. -->
+            <h:outputText value="  "/>
+            <p:outputLabel for="style" value="Style : "/>
+            <p:selectOneMenu id="style" value="#{bb.style}">
+                <f:selectItems value="#{bb.styles}"/>
+            </p:selectOneMenu>
+
             <!-- Si on veut commencer un nouveau chat avec, éventuellement, un autre rôle. -->
             <h:outputText value="  "/>
             <h:commandButton value="Nouveau chat" action="#{bb.nouveauChat}" />

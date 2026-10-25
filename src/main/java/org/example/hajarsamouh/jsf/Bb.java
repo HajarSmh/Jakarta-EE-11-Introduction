@@ -38,6 +38,16 @@ public class Bb implements Serializable {
     private List<SelectItem> listeRolesSysteme;
 
     /**
+     * Style choisi pour la reformulation (pirate, verlan, sms, vieux).
+     */
+    private String style = GenerateurReponse.PIRATE;
+
+    /**
+     * Liste des styles proposés.
+     */
+    private List<SelectItem> listeStyles;
+
+    /**
      * Dernière question posée par l'utilisateur.
      */
     private String question;
@@ -76,6 +86,28 @@ public class Bb implements Serializable {
 
     public void setRoleSysteme(String roleSysteme) {
         this.roleSysteme = roleSysteme;
+    }
+
+    public String getStyle() {
+        return this.style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    /**
+     * Retourne les styles disponibles dans la liste déroulante.
+     */
+    public List<SelectItem> getStyles() {
+        if (this.listeStyles == null) {
+            this.listeStyles = new ArrayList<>();
+            this.listeStyles.add(new SelectItem(GenerateurReponse.PIRATE, "Pirate"));
+            this.listeStyles.add(new SelectItem(GenerateurReponse.VERLAN, "Verlan"));
+            this.listeStyles.add(new SelectItem(GenerateurReponse.SMS, "Langage SMS"));
+            this.listeStyles.add(new SelectItem(GenerateurReponse.VIEUX, "Vieux français"));
+        }
+        return this.listeStyles;
     }
 
     public boolean isRoleSystemeChangeable() {
@@ -131,7 +163,8 @@ public class Bb implements Serializable {
         // Génère la réponse à partir de la question.
         this.reponse = this.generateurReponse.genererReponse(
                 this.question,
-                this.roleSysteme
+                this.roleSysteme,
+                this.style
         );
 
         // Ajoute la question et la réponse à l'historique.
