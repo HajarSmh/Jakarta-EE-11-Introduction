@@ -27,7 +27,7 @@ public class HelloServlet extends HttpServlet {
             out.println("<title>Hello Servlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Hello World from HelloServlet!!</h1>");
+            out.println("<h1>Hello World from HelloServlet!</h1>");
             out.println("</body>");
             out.println("</html>");
         }
